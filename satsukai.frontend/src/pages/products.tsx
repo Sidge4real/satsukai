@@ -1,9 +1,10 @@
 import Sort from "@/components/Filters/Sort";
 import { ShopItem } from "@/types";
+import router from "next/router";
 
 const options = [
-  "ASC [A-Z]",
-  "DESC [Z-A]",
+  "A-Z",
+  "Z-A",
   "Most Popular",
   "Best Rating",
   "Newest"
@@ -53,8 +54,9 @@ const Shop = ({ products }: { products: ShopItem[] }) => {
           {products.map((product) => (
             <div
               key={product.id}
-              className="bg-opacity-100 rounded-md"
+              className="bg-opacity-100 rounded-md cursor-pointer"
               style={{ flexBasis: "calc(33.33% - 1rem)" }}
+              onClick={() => router.replace(`products/${product.id}`)}
             >
               <div className="relative">
                 <img
