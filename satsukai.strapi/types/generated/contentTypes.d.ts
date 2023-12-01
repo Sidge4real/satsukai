@@ -726,13 +726,13 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   attributes: {
     posted_on: Attribute.Date & Attribute.Required;
     title: Attribute.String & Attribute.Required;
-    image: Attribute.Media & Attribute.Required;
-    text: Attribute.RichText & Attribute.Required;
+    banner: Attribute.Media & Attribute.Required;
     author: Attribute.Relation<
       'api::blog.blog',
       'manyToOne',
       'api::author.author'
     >;
+    content: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

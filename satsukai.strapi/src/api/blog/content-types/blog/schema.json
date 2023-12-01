@@ -20,7 +20,7 @@
       "type": "string",
       "required": true
     },
-    "image": {
+    "banner": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -28,15 +28,14 @@
         "images"
       ]
     },
-    "text": {
-      "type": "richtext",
-      "required": true
-    },
     "author": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "blogs"
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
