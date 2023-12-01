@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'JansinaRegular';
+  src: url('../font/jansina.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.logo{
+  font-size: 30px;
+  color: #5e5e5e;
+  font-family: "JansinaRegular";
+}

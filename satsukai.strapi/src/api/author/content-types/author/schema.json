@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "authors",
+  "info": {
+    "singularName": "author",
+    "pluralName": "authors",
+    "displayName": "Authors"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "info": {
+      "type": "component",
+      "repeatable": true,
+      "component": "author.author"
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "author"
+    }
+  }
+}
