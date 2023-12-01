@@ -1,6 +1,6 @@
 import Sort from "@/components/Filters/Sort";
-import { ShopItem } from "@/types";
 import router from "next/router";
+import { ShopItem } from "../../types/IShopItem";
 
 const options = [
   "A-Z",
