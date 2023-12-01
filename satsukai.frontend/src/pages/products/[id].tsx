@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { ShopItem } from "@/types";
+import { ShopItem } from '../../../types/IShopItem';
 
 const ProductDetailPage = ({ product }: { product: ShopItem }) => {
   const router = useRouter();
