@@ -17,7 +17,7 @@ const HeaderComponent = () => {
 
           <div className="flex items-center space-x-4">
             <Link href="/" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname === '/' ? 'bg-gray-100' : ''}`}>Home</Link>
-            <Link href="/shop" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname === '/shop' ? 'bg-gray-100' : ''}`}>Shop</Link>
+            <Link href="/products" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname === '/shop' ? 'bg-gray-100' : ''}`}>Shop</Link>
             <a href="#" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname === '/blog' ? 'bg-gray-100' : ''}`}>Blog</a>
             <a href="#" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname === '/contact' ? 'bg-gray-100' : ''}`}>Contact</a>
             <button type="button" className="text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2">
