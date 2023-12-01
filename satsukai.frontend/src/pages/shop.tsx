@@ -1,6 +1,5 @@
 import Sort from "@/components/Filters/Sort";
 import { ShopItem } from "@/types";
-import { useEffect, useState } from "react";
 
 const options = [
   "ASC [A-Z]",
@@ -36,31 +35,6 @@ const sizes = [
 ];
 
 const Shop = ({ products }: { products: ShopItem[] }) => { 
-  // const [products, setShopData] = useState<ShopItem[]>([]);
-  // const [loading, setLoading] = useState(true);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "http://localhost:1337/api/shops?populate=image"
-  //     );
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       setShopData(data.data);
-  //     } else {
-  //       console.error("Failed to fetch data");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-
   return (
     <div className="bg-white p-8">
       <nav className="flex gap-4 my-3">
@@ -72,7 +46,7 @@ const Shop = ({ products }: { products: ShopItem[] }) => {
           <button className="material-symbols-outlined">tune</button>
         </div>
       </nav>
-      {products.length > 0 ? (
+      {products.length == 0 ? (
         <p>Loading...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-8">
