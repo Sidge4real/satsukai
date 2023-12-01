@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { ShopItem } from '../../../types/IShopItem';
+import Detail from '@/components/detail';
 
 const ProductDetailPage = ({ product }: { product: ShopItem }) => {
   const router = useRouter();
@@ -11,7 +12,7 @@ const ProductDetailPage = ({ product }: { product: ShopItem }) => {
 
   return (
     <>
-      <p>{product.attributes.title}</p>
+      <Detail />
     </>
   );
 };
