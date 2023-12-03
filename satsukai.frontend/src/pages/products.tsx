@@ -80,7 +80,7 @@ const Shop = ({ products }: { products: ShopItem[] }) => {
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch("http://localhost:1337/api/shops?populate=image");
+    const response = await fetch("http://localhost:1337/api/products?populate=image");
 
     if (response.ok) {
       const data = await response.json();
