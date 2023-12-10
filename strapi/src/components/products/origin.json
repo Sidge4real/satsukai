@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_products_origins",
+  "info": {
+    "displayName": "origin",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "countries": {
+      "type": "enumeration",
+      "enum": [
+        "China",
+        "Japan",
+        "South Korea",
+        "North Korea",
+        "Mongolia",
+        "Taiwan",
+        "Hong Kong",
+        "Macau",
+        "Vietnam",
+        "Laos",
+        "Cambodia",
+        "Thailand",
+        "Myanmar (Burma)",
+        "Malaysia",
+        "Singapore",
+        "Indonesia",
+        "Brunei",
+        "East Timor (Timor-Leste)"
+      ]
+    }
+  }
+}

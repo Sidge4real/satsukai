@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import { ShopItem } from '../../../types/IShopItem';
 import Detail from '@/components/detail';
+import { IShopItem } from '../../../types/IShopItem';
 
-const ProductDetailPage = ({ product }: { product: ShopItem }) => {
+const ProductDetailPage = ({ product }: { product: IShopItem }) => {
   const router = useRouter();
 
   if (!product || product == null || undefined) {
@@ -12,7 +12,7 @@ const ProductDetailPage = ({ product }: { product: ShopItem }) => {
 
   return (
     <>
-      <Detail />
+      <Detail item={product} />
     </>
   );
 };
@@ -20,7 +20,7 @@ const ProductDetailPage = ({ product }: { product: ShopItem }) => {
 export async function getServerSideProps({ params }: { params: { id: string }, res: any }) {
   try {
     const response = await fetch(
-      `http://localhost:1337/api/shops?filters[id][$eq]=${params.id}`
+      `http://localhost:1337/api/products?populate=*,category,image&filters[id][$eq]=${params.id}`
     );
 
     if (response.ok) {

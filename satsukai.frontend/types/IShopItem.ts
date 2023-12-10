@@ -1,9 +1,41 @@
-export interface CommonAttributes {
-  title: string;
-  createdAt: Date;
-  updatedAt: Date;
+export interface IShopItem {
+  id:         number;
+  attributes: PurpleAttributes;
+}
+
+export interface PurpleAttributes {
+  name:        string;
+  price:       number;
+  stock:       number;
+  showroom:    boolean;
+  description: string;
+  createdAt:   Date;
+  updatedAt:   Date;
   publishedAt: Date;
-  image: Image;
+  category:    Category;
+  image:       Image;
+}
+
+export interface Category {
+  data: Data;
+}
+
+export interface Data {
+  id:         number;
+  attributes: DataAttributes;
+}
+
+export interface DataAttributes {
+  name:        Name;
+  min_temp:    number;
+  max_temp:    number;
+  createdAt:   Date;
+  updatedAt:   Date;
+  publishedAt: Date;
+}
+
+export enum Name {
+  BonsaiTrees = "Bonsai Trees",
 }
 
 export interface Image {
@@ -11,27 +43,31 @@ export interface Image {
 }
 
 export interface ImageDatum {
-  id: number;
-  attributes: ImageAttributes;
+  id:         number;
+  attributes: FluffyAttributes;
 }
 
-export interface ImageAttributes {
-  name: string;
-  alternativeText: null | string;
-  caption: null | string;
-  width: number;
-  height: number;
-  formats: Formats;
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: null | string;
-  provider: string;
+export interface FluffyAttributes {
+  name:              string;
+  alternativeText:   null;
+  caption:           null;
+  width:             number;
+  height:            number;
+  formats:           Formats;
+  hash:              string;
+  ext:               EXT;
+  mime:              MIME;
+  size:              number;
+  url:               string;
+  previewUrl:        null;
+  provider:          Provider;
   provider_metadata: ProviderMetadata;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt:         Date;
+  updatedAt:         Date;
+}
+
+export enum EXT {
+  PNG = ".png",
 }
 
 export interface Formats {
@@ -39,20 +75,24 @@ export interface Formats {
 }
 
 export interface Thumbnail {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: null | string;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
+  name:              string;
+  hash:              string;
+  ext:               EXT;
+  mime:              MIME;
+  path:              null;
+  width:             number;
+  height:            number;
+  size:              number;
+  url:               string;
   provider_metadata: ProviderMetadata;
 }
 
+export enum MIME {
+  ImagePNG = "image/png",
+}
+
 export interface ProviderMetadata {
-  public_id: string;
+  public_id:     string;
   resource_type: ResourceType;
 }
 
@@ -60,50 +100,17 @@ export enum ResourceType {
   Image = "image",
 }
 
-export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
+export enum Provider {
+  Cloudinary = "cloudinary",
 }
 
 export interface Meta {
   pagination: Pagination;
 }
 
-export interface BlogPost extends CommonAttributes {
-  id: number;
-  attributes: {
-    posted_on: string;
-    text: string;
-    Author: string;
-    image: Image;
-  };
-}
-
-export interface ShopItem extends CommonAttributes {
-  id: number;
-  attributes: {
-    info: string;
-    amount_of_items: number;
-    price: number;
-    origin: string;
-    indoor: boolean;
-    min_temp: number;
-    max_temp: number;
-    age: number | null;
-    max_age: number | null;
-    image: Image;
-    title: string;
-  };
-}
-
-export interface Shop {
-  data: ShopItem[];
-  meta: Meta;
-}
-
-export default interface ISort{
-  name: string;
-  selected: boolean;
+export interface Pagination {
+  page:      number;
+  pageSize:  number;
+  pageCount: number;
+  total:     number;
 }
