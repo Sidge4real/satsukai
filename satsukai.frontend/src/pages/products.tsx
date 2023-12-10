@@ -1,6 +1,6 @@
 import Sort from "@/components/Filters/Sort";
 import router from "next/router";
-import { ShopItem } from "../../types/IShopItem";
+import { IShopItem } from "../../types/IShopItem";
 
 const options = [
   "A-Z",
@@ -35,7 +35,7 @@ const sizes = [
   "Extra Large", //(24 inches and above)
 ];
 
-const Shop = ({ products }: { products: ShopItem[] }) => { 
+const Shop = ({ products }: { products: IShopItem[] }) => { 
   return (
     <div className="bg-white p-8">
       <nav className="flex gap-4 my-3">
@@ -47,11 +47,9 @@ const Shop = ({ products }: { products: ShopItem[] }) => {
           <button className="material-symbols-outlined">tune</button>
         </div>
       </nav>
-      {products.length == 0 ? (
-        <p>Loading...</p>
-      ) : (
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-8">
-          {products.map((product) => (
+          {products && products.map((product) => (
             <div
               key={product.id}
               className="bg-opacity-100 rounded-md cursor-pointer"
@@ -61,18 +59,17 @@ const Shop = ({ products }: { products: ShopItem[] }) => {
               <div className="relative">
                 <img
                   src={product.attributes.image.data[0].attributes.url}
-                  alt={product.attributes.title}
+                  alt={product.attributes.name}
                   className="w-full h-full object-cover rounded-md"
                 />
               </div>
               <div className="mt-2">
-                <h3 className="text-lg font-semibold">{product.attributes.title}</h3>
+                <h3 className="text-lg font-semibold">{product.attributes.name}</h3>
                 <p className="text-gray-700">&euro;{product.attributes.price}</p>
               </div>
             </div>
           ))}
         </div>
-      )}
     </div>
   );
 };
@@ -80,7 +77,7 @@ const Shop = ({ products }: { products: ShopItem[] }) => {
 
 export async function getServerSideProps() {
   try {
-    const response = await fetch("http://localhost:1337/api/shops?populate=image");
+    const response = await fetch("http://localhost:1337/api/products?populate=image");
 
     if (response.ok) {
       const data = await response.json();
