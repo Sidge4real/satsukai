@@ -12,8 +12,11 @@ export interface PurpleAttributes {
   createdAt:   Date;
   updatedAt:   Date;
   publishedAt: Date;
-  category:    Category;
+  origin:      null;
+  slogan:      null;
   image:       Image;
+  category:    Category;
+  including:   Including;
 }
 
 export interface Category {
@@ -113,4 +116,21 @@ export interface Pagination {
   pageSize:  number;
   pageCount: number;
   total:     number;
+}
+
+export interface Including {
+  data: IncludingData;
+}
+
+export interface IncludingData {
+  id:         number;
+  attributes: StickyAttributes;
+}
+
+export interface StickyAttributes {
+  info:        string;
+  createdAt:   Date;
+  updatedAt:   Date;
+  publishedAt: Date;
+  images:      Image; // plugin: strapi-plugin-populate-deep | fixes: (/populate=* has a official bug at strapi) // https://github.com/strapi/strapi/pull/2693 (deep nesting images)
 }

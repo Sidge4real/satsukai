@@ -1,17 +1,24 @@
-import { Fragment, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import ISort from "@/types";
+
+interface ISort {
+  name: string;
+  selected: boolean;
+}
 
 interface SortProps {
   options: string[];
   name?: string;
   position?: "right" | "left";
   type: "single" | "multi";
+  onChangeSingle?: Dispatch<SetStateAction<string>>;
+  onChangeMulti?: Dispatch<SetStateAction<string[]>>;
 }
 
-const Sort = ({ options, name = "Sort", position = "left", type = "single" }: SortProps) => {
+
+const Sort = ({ options, name = "Sort", position = "left", type = "single", onChangeSingle, onChangeMulti }: SortProps) => {
   let positionClass = position === "right" ? "right-0" : "right--10";
 
   const [sortOptions, setSortOptions] = useState<ISort[]>(
@@ -21,12 +28,26 @@ const Sort = ({ options, name = "Sort", position = "left", type = "single" }: So
     }))
   );
 
+  let selectedMultiOption: string[] = [];
+
+  
   const handleSortChange = (selectedOption: string) => {
     const updatedSortOptions = sortOptions.map((o) => ({
       ...o,
       selected: type === "single" ? o.name === selectedOption : type === "multi" ? (o.name === selectedOption ? !o.selected : o.selected) : o.selected,
     }));
     setSortOptions(updatedSortOptions);
+    //console.log("updatedSortOptions: " + updatedSortOptions[0].name)
+    if(type === "single" && onChangeSingle){
+      onChangeSingle(selectedOption)
+    }
+    if(type === "multi" && onChangeMulti){
+      for(const op of updatedSortOptions){
+        op.selected ? selectedMultiOption.push(op.name) : "";
+      }
+      //console.log(selectedMultiOption)
+      onChangeMulti(selectedMultiOption);
+    }
   };
 
   return (

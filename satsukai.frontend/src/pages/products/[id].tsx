@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Detail from '@/components/detail';
 import { IShopItem } from '../../../types/IShopItem';
+import Link from 'next/link';
 
 const ProductDetailPage = ({ product }: { product: IShopItem }) => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const ProductDetailPage = ({ product }: { product: IShopItem }) => {
 export async function getServerSideProps({ params }: { params: { id: string }, res: any }) {
   try {
     const response = await fetch(
-      `http://localhost:1337/api/products?populate=*,category,image&filters[id][$eq]=${params.id}`
+      `http://localhost:1337/api/products?populate=deep&filters[id][$eq]=${params.id}`
     );
 
     if (response.ok) {

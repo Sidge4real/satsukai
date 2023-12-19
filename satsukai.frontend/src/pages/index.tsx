@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import styles from "@/styles/Home.module.css";
 import { useEffect, useState } from 'react';
-import { BlogPost, ShopItem } from "@/types";
+import { IBlogPost } from "../../types/IBlogPost";
+import { IShopItem } from "../../types/IShopItem";
 import PartnerSection from '@/components/partners';
 
 export default function Home() {
-  const [blogPosts, setBlogs] = useState<BlogPost[]>([]);
-  const [shopItems, setShowItems] = useState<ShopItem[]>([]);
+  const [blogPosts, setBlogs] = useState<IBlogPost[]>([]);
+  const [shopItems, setShowItems] = useState<IShopItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);
 
   const fetchData = async (url: string, setter: React.Dispatch<React.SetStateAction<any[]>>) => {
@@ -40,34 +41,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='h-screen w-full'>
-        <section className='relative h-full w-full'>
-          <div className={styles.showroom_container}>
-            {shopItems.length > 0 && (
-              <div className={styles.showroom}>
-                <div>
-                  <h2 style={{fontSize:60}}>{shopItems[currentItemIndex].attributes.title}</h2>
-                  <p>{shopItems[currentItemIndex].attributes.info}</p>
-                </div>
-                <img
-                style={{height:1000}}
-                  className=""
-                  src={shopItems[currentItemIndex].attributes.image.data[0].attributes.url}
-                  alt={shopItems[currentItemIndex].attributes.image.data[0].attributes.caption || ''}
-                />
-              </div>
-            )}
-            <div className={styles.pagination}>
-                  {shopItems.map((item, index) => (
-                    <span
-                      key={index}
-                      className={currentItemIndex === index ? styles.activeDot : styles.dot}
-                      onClick={() => handleItemClick(index)}
-                    />
-                  ))}
-                </div>
-          </div>
-        </section>
-        <div className={styles.diagonal_line}></div>
         {/* <PartnerSection/> */}
       </main>
     </>

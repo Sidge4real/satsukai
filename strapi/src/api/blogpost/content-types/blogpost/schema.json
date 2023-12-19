@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogposts",
+  "info": {
+    "singularName": "blogpost",
+    "pluralName": "blogposts",
+    "displayName": "blogpost",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "author": {
+      "type": "enumeration",
+      "enum": [
+        "Zaysa Del Rosario",
+        "Yuki Tanaka",
+        "Natasha Ivanova",
+        "Alejandro Rodriguez",
+        "Magnus Olsen"
+      ]
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slogan": {
+      "type": "text"
+    },
+    "published": {
+      "type": "datetime"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Aesthetics",
+        "Horticulture",
+        "Maintenance",
+        "Knowledge"
+      ]
+    }
+  }
+}

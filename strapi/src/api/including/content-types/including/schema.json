@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "includings",
+  "info": {
+    "singularName": "including",
+    "pluralName": "includings",
+    "displayName": "including"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "info": {
+      "type": "text"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "including"
+    }
+  }
+}
