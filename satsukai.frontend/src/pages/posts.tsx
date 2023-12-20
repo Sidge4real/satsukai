@@ -10,16 +10,17 @@ const PostsPage = ({ blogData }: { blogData: IBlogPost[] }) => {
   return (
     <div className="container mx-auto mt-8 text-center">
       <div className="flex justify-center">
-        <img src="blogBanner.jpg" className="h-80" alt="Blog Banner" />
+        <img src="blogBanner.png" className="h-80" alt="Blog Banner" />
       </div>
-      <h1 className="text-4xl font-bold mb-4">Blog Posts</h1>
+      <h1 className="text-4xl font-bold mb-4 expr">Whispers of Wisdom</h1>
+      <p className="mb-4">Where Imagination Meets Expression</p>
       <nav className="flex gap-4 my-3 mx-5">
         <Sort type="multi" options={categories} name="Category" position="left" onChangeMulti={SetSortCategories} />   
       </nav>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogData.map((post) => (
           <div key={post.id} className="max-w-md mx-auto flex flex-col h-full">
-            <Link href={`/blog/${post.id}`}>
+            <Link href={`/posts/${post.id}`}>
               <div className="flex flex-col h-full">
                 <div className="bg-white p-4 rounded-lg shadow-md transition-shadow duration-300 hover:shadow-lg hover:bg-gray-100 flex-grow">
                   <div className="flex justify-center h-40">
