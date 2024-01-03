@@ -26,11 +26,11 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
 
 
   const features = [
-    { name: 'Origin', description: product.attributes.origin},
-    { name: 'Category', description: product.attributes.category.data.attributes.name },
-    { name: 'Dimensions', description: '6.25" x 3.55" x 1.15"' },
-    { name: 'Temperatures', description: product.attributes.category.data.attributes.temperature },
-    { name: 'Optional', description: "" },
+    { name: 'Age', description: (product.attributes.age ? product.attributes.age + " years old" : "/")},
+    { name: 'Lifespan', description: (product.attributes.lifespan ? product.attributes.lifespan + " years old" : "/") },
+    { name: 'Dimensions', description: product.attributes.dimensions },
+    { name: 'Temperatures', description: product.attributes.temperatures },
+    { name: 'Origin', description: product.attributes.origin },
     { name: 'Price', description: "€" + product.attributes.price },
   ]
 
@@ -69,27 +69,12 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
           ))}
         </dl>
       </div>
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 gap-4">
           <img
             src={product.attributes.image.data[0].attributes.url}
             alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
-            className="rounded-lg bg-gray-100"
+            className="rounded-lg bg-gray-100 w-full h-auto"
           />
-          {/* <img
-            src={product.attributes.including.data.attributes.images.data[0].attributes.url}
-            alt="Top down view of walnut card tray with embedded magnets and card groove."
-            className="rounded-lg bg-gray-100 w-full"
-          />
-          <img
-            src={product.attributes.including.data.attributes.images.data[1].attributes.url}
-            alt="Side of walnut card tray with card groove and recessed card area."
-            className="rounded-lg bg-gray-100 w-full"
-          />
-          <img
-            src={product.attributes.including.data.attributes.images.data[2].attributes.url}
-            alt="Walnut card tray filled with cards and card angled in dedicated groove."
-            className="rounded-lg bg-gray-100 w-full"
-          /> */}
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-8 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">

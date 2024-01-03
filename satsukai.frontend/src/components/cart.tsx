@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { IShopItem } from "../../types/IShopItem";
+import Link from "next/link";
 
 interface ICart {
     shoppingList: IShopItem[];
@@ -8,6 +9,8 @@ interface ICart {
 }
 
 const ShopCart = ({shoppingList, setShoppingList, toggleCartOverlay } : ICart) => {
+  const [openDetailsMap, setOpenDetailsMap] = useState<{ [key: string]: boolean }>({});
+
 
     const toggleDetails = (item: IShopItem) => {
         const updatedShoppingList = shoppingList.map((listItem) =>
@@ -42,6 +45,14 @@ const ShopCart = ({shoppingList, setShoppingList, toggleCartOverlay } : ICart) =
         setShoppingList((prevShoppingList) => prevShoppingList.filter((prevItem) => prevItem !== item));
       }
 
+      useEffect(() => {
+        // Wanneer shoppingList wordt gewijzigd, controleer of details voor het eerste item moeten worden geopend
+        if (shoppingList.length > 0) {
+          const firstItemId = shoppingList[0].id;
+          setOpenDetailsMap((prev) => ({ ...prev, [firstItemId]: true }));
+        }
+      }, [shoppingList]);
+
 
 
     return <div className="fixed top-0 right-0 h-full w-full bg-black bg-opacity-50 w-1/2 z-50 flex items-end p-4">
@@ -56,7 +67,7 @@ const ShopCart = ({shoppingList, setShoppingList, toggleCartOverlay } : ICart) =
         <div className='border-b border-gray-300 flex flex-col text-gray-500 mb-4'>
           <div key={index} className="mb-4 pb-4 flex items-center justify-between">
             <div>
-              <p>{item.attributes.name}</p>
+              <Link className="hover:underline" href={"/products/" + item.id}>{item.attributes.name}</Link>
             </div>
             <div className="flex items-center gap-4">
               <button className="flex items-center hover:text-black" onClick={() => toggleAmount(item, "remove")}>
