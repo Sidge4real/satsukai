@@ -16,11 +16,12 @@ body {
 }
 
 .expr{
-  font-size: 60px;
   color: #5e5e5e;
   font-family: "JansinaRegular";
 }
-
+.expr-post-page{
+  font-size: 60px;
+}
 
 
 @keyframes slideInRight {

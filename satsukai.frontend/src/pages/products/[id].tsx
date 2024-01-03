@@ -2,17 +2,28 @@ import { useRouter } from 'next/router';
 import { IShopItem } from '../../../types/IShopItem';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/breadcumbs';
-import { useContext } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { ShopContext } from '@/ShopContext';
 
-const ProductDetailPage = ({ product }: { product: IShopItem }) => {
+interface IDetailPage {
+  product: IShopItem;
+  addToCart: (item: IShopItem) => void;
+  setShoppingList?: Dispatch<SetStateAction<IShopItem[]>>;
+}
+const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
   const {items } = useContext(ShopContext);
+  const [history, setHistory] = useState([]);
+  
   const router = useRouter();
 
   if (!product || product == null || undefined) {
     router.replace('/404');
     return null;
   }
+  
+  
+  
+
 
   const features = [
     { name: 'Origin', description: product.attributes.origin},
@@ -34,6 +45,20 @@ const ProductDetailPage = ({ product }: { product: IShopItem }) => {
           </h2>
         </div>
         <p className="mt-4 text-gray-500">{product.attributes.slogan}</p>
+        <div className="mt-4 flex items-center space-x-4">
+          <button 
+            className={`flex items-center text-white hover:bg-green-600 rounded-md px-3 ${!items.some((item) => item.id === product.id) ? "bg-green-500" : "bg-green-600" } py-2`}
+            onClick={() => {
+              !items.some((item) => item.id === product.id) &&
+              addToCart(product);
+            }}
+          >
+            <span className="material-symbols-outlined">shopping_bag</span>
+            {
+              !items.some((item) => item.id === product.id) ? <span className="ml-2">Add to Cart</span> : <span className="ml-2">Added to cart!</span> 
+            }
+          </button>
+        </div>
 
         <dl className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
           {features.map((feature) => (
@@ -73,9 +98,6 @@ const ProductDetailPage = ({ product }: { product: IShopItem }) => {
             Return
           </p>
         </Link>
-        <button className="flex items-center justify-center w-full sm:w-auto bg-blue-500 text-white hover:bg-blue-600 rounded-md px-3 py-2">
-          Buy
-        </button>
       </div>
     </div>
   )

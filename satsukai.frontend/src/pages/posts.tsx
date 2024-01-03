@@ -13,7 +13,7 @@ const PostsPage = ({ blogData }: { blogData: IBlogPost[] }) => {
       <div className="flex justify-center">
         <img src="blogBanner.png" className="h-80" alt="Blog Banner" />
       </div>
-      <h1 className="text-4xl font-bold mb-4 expr">Whispers of Wisdom</h1>
+      <h1 className="text-4xl font-bold mb-4 expr expr-post-page">Whispers of Wisdom</h1>
       <p className="mb-4">Where Imagination Meets Expression</p>
       <nav className="flex gap-4 my-3 mx-5">
         <Breadcrumbs />

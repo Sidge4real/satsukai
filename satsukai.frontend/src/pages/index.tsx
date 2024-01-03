@@ -6,7 +6,7 @@ import { IShopItem } from "../../types/IShopItem";
 import PartnerSection from '@/components/partners';
 import { ShopContext } from '@/ShopContext';
 
-export default function Home() {
+export default function Home(setShoppingList) {
   const {items} = useContext(ShopContext);
   const [blogPosts, setBlogs] = useState<IBlogPost[]>([]);
   const [shopItems, setShowItems] = useState<IShopItem[]>([]);

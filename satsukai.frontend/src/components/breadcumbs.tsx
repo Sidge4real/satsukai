@@ -35,7 +35,7 @@ const Breadcrumbs = ({param, category} : IBreadcrumbs) => {
         }
         {pathSegments.map((segment, index) => (
           <li key={index} className="flex items-center">
-            <span className="mx-1">{'>'}</span>
+            <span className="mx-1">{'＞'}</span>
             <Link
             href={
               categoryPathSegement === segment // at category segment in array change link

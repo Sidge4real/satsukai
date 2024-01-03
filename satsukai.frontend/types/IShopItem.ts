@@ -3,6 +3,8 @@ import { ICategory } from "./ICategory";
 export interface IShopItem {
   id:         number;
   attributes: PurpleAttributes;
+  amount_to_buy?: number | null;
+  openDetails?: boolean;
 }
 
 export interface IBag {

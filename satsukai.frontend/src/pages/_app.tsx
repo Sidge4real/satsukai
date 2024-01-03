@@ -1,61 +1,55 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import { useState, useEffect } from 'react';
 import Header from "@/components/header";
-import { useState } from 'react';
 import { ShopContext } from '@/ShopContext';
 import { IBag, IShopItem } from '../../types/IShopItem';
+import ShopCart from '@/components/cart';
+
+const LoadingScreen = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div className="flex items-center">
+      <img style={{ width: "180px" }} src='brand.png' alt='logo' />
+      <p style={{fontSize:"60px", color:"#999"}} className='expr'>Satsukai</p>
+    </div>
+  </div>
+);
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [shoppingList, setShoppingList] = useState<IBag[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [shoppingList, setShoppingList] = useState<IShopItem[]>([]);
   const [showCartOverlay, setShowCartOverlay] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []); 
+
+  const addToCart = (item: IShopItem) => {
+    item.amount_to_buy = 1;
+    item.openDetails = false;
+    setShoppingList(prev => [...prev, item]);
+  };
 
   const toggleCartOverlay = () => {
     setShowCartOverlay(!showCartOverlay);
   };
 
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <ShopContext.Provider value={{items: shoppingList}}>
+    <ShopContext.Provider value={{ items: shoppingList }}>
       <Header toggleCartOverlay={toggleCartOverlay} />
       {showCartOverlay && (
-  <div className="fixed top-0 right-0 h-full w-full bg-black bg-opacity-50 w-1/2 z-50 flex items-end p-4">
-    <div className="bg-white p-4 h-full overflow-y-auto animate-slideInRight absolute top-0 right-0 flex flex-col w-full sm:w-[20vw]">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-semibold">Cart</h2>
-        <button className="text-gray-500" onClick={toggleCartOverlay}>
-          <span className="material-symbols-outlined">close</span>
-        </button>
-      </div>
-      {shoppingList.map((item, index) => (
-        <div key={index} className="mb-4 pb-4 border-b border-gray-300">
-          <p className="text-lg font-semibold">{item.name}</p>
-          <p className="text-sm text-gray-500">Prijs: {item.price} EUR</p>
-          <div className="flex items-center mt-2">
-            <button className="text-red-500 mr-2" onClick={() => {}}>
-              delete
-            </button>
-            <button className="text-blue-500 mr-2" onClick={() => {}}>
-              +1 buy
-            </button>
-            <button className="text-green-500" onClick={() => {}}>
-              {item.hasKit ? "Kit verwijderen" : "Voeg kit toe"}
-            </button>
-          </div>
-        </div>
-      ))}
-      {
-        shoppingList.length == 0 && <p>There are no items in your shopping card added...</p>
-      }
-      {
-        shoppingList.length != 0 && <div className="mt-4">
-        <p className="text-lg font-semibold">total: {} EUR</p>
-      </div>
-      }
-    </div>
-  </div>
-)}
-
-
-      <Component {...pageProps} />
+        <ShopCart shoppingList={shoppingList} setShoppingList={setShoppingList} toggleCartOverlay={toggleCartOverlay} />
+      )}
+      <Component {...pageProps} addToCart={addToCart} />
     </ShopContext.Provider>
   );
 }
