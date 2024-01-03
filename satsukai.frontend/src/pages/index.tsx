@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import styles from "@/styles/Home.module.css";
-import { useContext, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { IBlogPost } from "../../types/IBlogPost";
 import { IShopItem } from "../../types/IShopItem";
 import PartnerSection from '@/components/partners';
 import { ShopContext } from '@/ShopContext';
 
-export default function Home(setShoppingList) {
+export default function Home({setShoppingList} : {setShoppingList : Dispatch<SetStateAction<IShopItem[]>>}) {
   const {items} = useContext(ShopContext);
   const [blogPosts, setBlogs] = useState<IBlogPost[]>([]);
   const [shopItems, setShowItems] = useState<IShopItem[]>([]);

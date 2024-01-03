@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { ShopContext } from '@/ShopContext';
 import { IBag, IShopItem } from '../../types/IShopItem';
 import ShopCart from '@/components/cart';
+import { useRouter } from 'next/router';
 
 const LoadingScreen = () => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -20,6 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [shoppingList, setShoppingList] = useState<IShopItem[]>([]);
   const [showCartOverlay, setShowCartOverlay] = useState(false);
 
+  let router = useRouter();
+  let title = "";
+
   useEffect(() => {
     const fetchData = async () => {
       await new Promise(resolve => setTimeout(resolve, 3000));
@@ -28,6 +32,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
     fetchData();
   }, []); 
+
+  // useEffect(() => {
+  //   if (router.route === "/products" || router.route.startsWith("/products/")) {
+  //     title = "shop";
+  //   }
+
+  //   document.title = `Satsukai${title ? ` | ${title}` : ''}`;
+  // }, [router.route]);
 
   const addToCart = (item: IShopItem) => {
     item.amount_to_buy = 1;

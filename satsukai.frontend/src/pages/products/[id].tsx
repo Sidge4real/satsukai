@@ -30,7 +30,7 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
     { name: 'Category', description: product.attributes.category.data.attributes.name },
     { name: 'Dimensions', description: '6.25" x 3.55" x 1.15"' },
     { name: 'Temperatures', description: product.attributes.category.data.attributes.temperature },
-    { name: 'Optional', description: product.attributes.including.data.attributes.info },
+    { name: 'Optional', description: "" },
     { name: 'Price', description: "€" + product.attributes.price },
   ]
 
@@ -75,7 +75,7 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
             alt="Walnut card tray with white powder coated steel divider and 3 punchout holes."
             className="rounded-lg bg-gray-100"
           />
-          <img
+          {/* <img
             src={product.attributes.including.data.attributes.images.data[0].attributes.url}
             alt="Top down view of walnut card tray with embedded magnets and card groove."
             className="rounded-lg bg-gray-100 w-full"
@@ -89,7 +89,7 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
             src={product.attributes.including.data.attributes.images.data[2].attributes.url}
             alt="Walnut card tray filled with cards and card angled in dedicated groove."
             className="rounded-lg bg-gray-100 w-full"
-          />
+          /> */}
         </div>
       </div>
       <div className="flex flex-col items-center justify-center mt-8 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
