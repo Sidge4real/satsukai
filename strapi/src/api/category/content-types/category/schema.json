@@ -23,6 +23,19 @@
     },
     "temperature": {
       "type": "text"
+    },
+    "endpoint": {
+      "type": "string"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

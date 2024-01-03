@@ -1,11 +1,13 @@
 import Head from 'next/head';
 import styles from "@/styles/Home.module.css";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IBlogPost } from "../../types/IBlogPost";
 import { IShopItem } from "../../types/IShopItem";
 import PartnerSection from '@/components/partners';
+import { ShopContext } from '@/ShopContext';
 
 export default function Home() {
+  const {items} = useContext(ShopContext);
   const [blogPosts, setBlogs] = useState<IBlogPost[]>([]);
   const [shopItems, setShowItems] = useState<IShopItem[]>([]);
   const [currentItemIndex, setCurrentItemIndex] = useState<number>(0);

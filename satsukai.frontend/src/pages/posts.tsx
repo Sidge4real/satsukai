@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { IBlogPost } from "../../types/IBlogPost";
-import Sort from "@/components/Filters/Sort";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Breadcrumbs from "@/components/breadcumbs";
+import { ShopContext } from "@/ShopContext";
 
-let categories = ["Aesthetics", "Horticulture", "Maintenance", "Knowledge"]
 
 const PostsPage = ({ blogData }: { blogData: IBlogPost[] }) => {
-  const [sortCategories, SetSortCategories] = useState<string[]>([]);
+  const {items} = useContext(ShopContext);
+
   return (
-    <div className="container mx-auto mt-8 text-center">
+    <div className="container mx-auto mt-8 my-12 text-center">
       <div className="flex justify-center">
         <img src="blogBanner.png" className="h-80" alt="Blog Banner" />
       </div>
       <h1 className="text-4xl font-bold mb-4 expr">Whispers of Wisdom</h1>
       <p className="mb-4">Where Imagination Meets Expression</p>
       <nav className="flex gap-4 my-3 mx-5">
-        <Sort type="multi" options={categories} name="Category" position="left" onChangeMulti={SetSortCategories} />   
+        <Breadcrumbs />
       </nav>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogData.map((post) => (

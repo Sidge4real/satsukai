@@ -1,6 +1,13 @@
+import { ICategory } from "./ICategory";
+
 export interface IShopItem {
   id:         number;
   attributes: PurpleAttributes;
+}
+
+export interface IBag {
+  item: IShopItem;
+  amount: number;
 }
 
 export interface PurpleAttributes {
@@ -20,7 +27,7 @@ export interface PurpleAttributes {
 }
 
 export interface Category {
-  data: Data;
+  data: ICategory;
 }
 
 export interface Data {
@@ -30,8 +37,7 @@ export interface Data {
 
 export interface DataAttributes {
   name:        Name;
-  min_temp:    number;
-  max_temp:    number;
+  temperature: string;
   createdAt:   Date;
   updatedAt:   Date;
   publishedAt: Date;

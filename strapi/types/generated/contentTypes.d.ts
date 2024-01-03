@@ -743,6 +743,8 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::product.product'
     >;
     temperature: Attribute.Text;
+    endpoint: Attribute.String;
+    cover: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
