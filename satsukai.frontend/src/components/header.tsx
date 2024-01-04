@@ -41,7 +41,6 @@ const HeaderComponent = ({ toggleCartOverlay }: HeaderComponentProps) => {
             <Link href="/" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium`}>Home</Link>
             <Link href="/products" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname.startsWith('/products') ? 'bg-gray-100' : ''}`}>Shop</Link>
             <Link href="/posts" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname.startsWith('/posts') ? 'bg-gray-100' : ''}`}>Blog</Link>
-            <Link href="/contact" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname === '/contact' ? 'bg-gray-100' : ''}`}>Contact</Link>
             <button type="button" className="block text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2" onClick={toggleCartOverlay}>
               <span className="material-symbols-outlined text-3xl">shopping_bag</span>
             </button>

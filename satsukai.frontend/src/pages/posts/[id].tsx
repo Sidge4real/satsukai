@@ -5,7 +5,7 @@ import { ShopContext } from "@/ShopContext";
 import { useContext } from "react";
 
 const DetailPage = ({ post }: { post: IBlogPost }) => {
-    const {items} = useContext(ShopContext);
+    const { items } = useContext(ShopContext);
     const router = useRouter();
 
     if (!post || post == null || undefined) {
@@ -19,6 +19,7 @@ const DetailPage = ({ post }: { post: IBlogPost }) => {
                 <Breadcrumbs param={post.attributes.title} />
             </nav>
             <img src={post.attributes.banner.data.attributes.url} alt={post.attributes.title} className="mx-auto mb-8 rounded-lg" />
+            <p className="text-sm text-gray-500 mb-4">  {post.attributes.author} on {new Date(post.attributes.published).toLocaleDateString('en-GB')}</p>
             <h1 className="text-4xl font-bold mb-4">{post.attributes.title}</h1>
             <p className="text-gray-600">{post.attributes.text}</p>
         </div>

@@ -1,5 +1,5 @@
 import { IShopItem } from "../../../types/IShopItem";
-import TuneModal from "@/components/modal";
+import TuneModal from "@/components/categoryModal";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import Breadcrumbs from "@/components/breadcumbs";
 import router, { useRouter } from "next/router";

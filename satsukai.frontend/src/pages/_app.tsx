@@ -7,6 +7,7 @@ import { IBag, IShopItem } from '../../types/IShopItem';
 import ShopCart from '@/components/cart';
 import { useRouter } from 'next/router';
 import LoadingScreen from '@/components/loadingScreen';
+import Footer from '@/components/footer';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,10 @@ export default function App({ Component, pageProps }: AppProps) {
     setShoppingList((prevShoppingList) => prevShoppingList.filter((prevItem) => prevItem !== item));
   }
 
+  const minHeightStyle = {
+    minHeight: `85vh`,
+  };
+
   if (isLoading) {
     return <LoadingScreen />;
   }
@@ -46,7 +51,10 @@ export default function App({ Component, pageProps }: AppProps) {
       {showCartOverlay && (
         <ShopCart shoppingList={shoppingList} setShoppingList={setShoppingList} toggleCartOverlay={toggleCartOverlay} />
       )}
-      <Component {...pageProps} addToCart={addToCart} deleteItemFromList={deleteItemFromList} />
+      <div style={minHeightStyle}>
+        <Component {...pageProps} addToCart={addToCart} deleteItemFromList={deleteItemFromList} />
+      </div>
+      <Footer/>
     </ShopContext.Provider>
   );
 }

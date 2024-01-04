@@ -1,5 +1,5 @@
 import Breadcrumbs from "@/components/breadcumbs";
-import TuneModal from "@/components/modal";
+import TuneModal from "@/components/categoryModal";
 import { IShopItem } from "../../types/IShopItem";
 import { useContext, useState } from "react";
 import router from "next/router";

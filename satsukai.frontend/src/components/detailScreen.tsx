@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import { ICategory } from "../../types/ICategory";
 import { IShopItem } from "../../types/IShopItem";
 import Breadcrumbs from "./breadcumbs";
-import TuneModal from "./modal";
+import TuneModal from "./categoryModal";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface IDetail {
     openTuneModal: () => void;
@@ -42,7 +43,7 @@ const detailScreen = ({ openTuneModal, products, items, addToCart, deleteItemFro
                 </div>
             </nav>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-8 relative">
                 {products.length > 0 ? products.map((product) => (
                     <div
                     key={product.id}
@@ -57,7 +58,7 @@ const detailScreen = ({ openTuneModal, products, items, addToCart, deleteItemFro
                             onClick={() => router.replace(`/products/${product.id}`)}
                         />
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 relative">
                         <h3 className="text-lg font-semibold" onClick={() => router.replace(`/products/${product.id}`)}>
                             {product.attributes.name}
                         </h3>
@@ -68,7 +69,7 @@ const detailScreen = ({ openTuneModal, products, items, addToCart, deleteItemFro
                     </div>
                     {screenWidth < 1400 && screenWidth > 768 ? (
                         <button
-                            className="items-center w-full text-white py-1 bg-green-500 hover:bg-green-600 absolute bottom-0"
+                            className="items-center w-full p-5 items-center text-white py-1 bg-green-500 rounded-md hover:bg-green-600 absolute right-0 bottom-0"
                             onClick={(e) => {
                                 e.preventDefault();
                                 !items.some((item) => item.id === product.id)
@@ -76,7 +77,7 @@ const detailScreen = ({ openTuneModal, products, items, addToCart, deleteItemFro
                                     : deleteItemFromList(product);
                             }}
                         >
-                            <span className="material-symbols-outlined items-center">
+                            <span className="material-symbols-outlined w-full h-full flex justify-center items-center">
                                 {items.some((item) => item.id === product.id) ? "delete" : "add"}
                             </span>
                         </button>
@@ -98,7 +99,14 @@ const detailScreen = ({ openTuneModal, products, items, addToCart, deleteItemFro
                     ) : null}
                 </div>
                 
-                )) : <p>There are no products avaible for this category</p>}
+                )) : <div className="min-h-[65rem]">
+                    <p>There are no products avaible for this category</p>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <Link href="/products">
+                            <p className="mt-4 bg-green-500 text-white py-2 px-4 rounded-md">Go back to Products</p>
+                        </Link>
+                    </div>
+                </div>}
             </div>
 
             <TuneModal categories={categories} isOpen={isTuneModalOpen} onClose={closeTuneModal} />
