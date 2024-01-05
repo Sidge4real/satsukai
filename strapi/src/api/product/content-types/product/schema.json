@@ -139,6 +139,16 @@
     },
     "dimensions": {
       "type": "text"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "green",
+        "red",
+        "yellow",
+        "blue"
+      ],
+      "default": "green"
     }
   }
 }

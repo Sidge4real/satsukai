@@ -44,7 +44,7 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
             {product.attributes.name}
           </h2>
         </div>
-        <p className="mt-4 text-gray-500">{product.attributes.slogan}</p>
+        <p className="mt-4 text-gray-500">{product.attributes.slogan.replace(/[.,;]$/, '')}</p>
         <div className="mt-4 flex items-center space-x-4">
           <button 
             className={`flex items-center text-white hover:bg-green-600 rounded-md px-3 ${!items.some((item) => item.id === product.id) ? "bg-green-500" : "bg-green-600" } py-2`}
@@ -79,7 +79,7 @@ const ProductDetailPage = ({ product, addToCart } : IDetailPage) => {
       </div>
       <div className="flex flex-col items-center justify-center mt-8 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
         <Link href={`/products/${product.attributes.category.data.attributes.endpoint}`}>
-          <p className="flex items-center justify-center w-full sm:w-auto text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2">
+          <p className="flex items-center justify-center w-full sm:w-auto text-gray-500 hover:bg-gray-200 bg-gray-100 rounded-md px-3 py-2">
             Return
           </p>
         </Link>

@@ -24,9 +24,10 @@ export interface PurpleAttributes {
   origin:      string;
   slogan:      string;
   age:         number;
+  color:       string;
   lifespan:    number;
   dimensions:  string;
-  temperatures: string;
+  temperatures:string;
   image:       Image;
   category:    Category;
   including:   Including;

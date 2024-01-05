@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ShopContext.Provider value={{ items: shoppingList }}>
-      <Header toggleCartOverlay={toggleCartOverlay} />
+      <Header toggleCartOverlay={toggleCartOverlay} amount={shoppingList.length} />
       {showCartOverlay && (
         <ShopCart shoppingList={shoppingList} setShoppingList={setShoppingList} toggleCartOverlay={toggleCartOverlay} />
       )}

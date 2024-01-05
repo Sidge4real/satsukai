@@ -763,6 +763,48 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiEmployeeEmployee extends Schema.CollectionType {
+  collectionName: 'employees';
+  info: {
+    singularName: 'employee';
+    pluralName: 'employees';
+    displayName: 'employee';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.Enumeration<
+      [
+        'Zaysa Del Rosario',
+        'Yuki Tanaka',
+        'Natasha Ivanova',
+        'Alejandro Rodriguez',
+        'Magnus Olsen',
+        'Mia Anderson'
+      ]
+    >;
+    function: Attribute.String;
+    profile: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::employee.employee',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::employee.employee',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiIncludingIncluding extends Schema.CollectionType {
   collectionName: 'includings';
   info: {
@@ -907,6 +949,8 @@ export interface ApiProductProduct extends Schema.CollectionType {
     lifespan: Attribute.Integer;
     temperatures: Attribute.Text;
     dimensions: Attribute.Text;
+    color: Attribute.Enumeration<['green', 'red', 'yellow', 'blue']> &
+      Attribute.DefaultTo<'green'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -943,6 +987,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::blogpost.blogpost': ApiBlogpostBlogpost;
       'api::category.category': ApiCategoryCategory;
+      'api::employee.employee': ApiEmployeeEmployee;
       'api::including.including': ApiIncludingIncluding;
       'api::product.product': ApiProductProduct;
     }

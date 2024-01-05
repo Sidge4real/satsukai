@@ -4,9 +4,10 @@ import { useState } from 'react';
 
 interface HeaderComponentProps {
   toggleCartOverlay: () => void;
+  amount: number;
 }
 
-const HeaderComponent = ({ toggleCartOverlay }: HeaderComponentProps) => {
+const HeaderComponent = ({ toggleCartOverlay, amount }: HeaderComponentProps) => {
   const router = useRouter();
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +18,7 @@ const HeaderComponent = ({ toggleCartOverlay }: HeaderComponentProps) => {
   };
 
   return (
-    <nav className="bg-white bg-opacity-0 top-0 z-50">
+    <header className="bg-white bg-opacity-0 top-0 z-50">
       <div className="mx-10 py-5">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex-shrink-0">
@@ -43,6 +44,7 @@ const HeaderComponent = ({ toggleCartOverlay }: HeaderComponentProps) => {
             <Link href="/posts" className={`text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-sm font-medium ${router.pathname.startsWith('/posts') ? 'bg-gray-100' : ''}`}>Blog</Link>
             <button type="button" className="block text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2" onClick={toggleCartOverlay}>
               <span className="material-symbols-outlined text-3xl">shopping_bag</span>
+              {amount > 0 && <span className="absolute bottom-[10px] right-[10px] bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center -mt-1 -mr-1">{amount >= 10 ? "9+" : amount}</span>}
             </button>
           </div>
 
@@ -66,7 +68,7 @@ const HeaderComponent = ({ toggleCartOverlay }: HeaderComponentProps) => {
           )}
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 
