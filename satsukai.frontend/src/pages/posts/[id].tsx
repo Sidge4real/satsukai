@@ -1,6 +1,15 @@
 import { useRouter } from "next/router";
 import { IBlogPost } from "../../../types/IBlogPost";
 import Breadcrumbs from "@/components/breadcumbs";
+import { ParsedUrlQuery } from "querystring";
+import { GetStaticPaths, GetStaticProps } from "next";
+
+interface Paths extends ParsedUrlQuery {
+    id: string
+}
+interface ProductProps {
+    post: IBlogPost;
+}
 
 const DetailPage = ({ post }: { post: IBlogPost }) => {
     const router = useRouter();
@@ -9,7 +18,7 @@ const DetailPage = ({ post }: { post: IBlogPost }) => {
         router.replace('/404');
         return null;
     }
-  
+
     return (
         <div className="container mx-auto mt-8 text-center max-w-screen-lg px-5 pb-10">
             <nav className="flex gap-4 my-3">
@@ -23,29 +32,29 @@ const DetailPage = ({ post }: { post: IBlogPost }) => {
     );
 };
 
-export async function getServerSideProps({ params }: { params: { id: string }, res: any }) {
-    try {
-        const response = await fetch(
-            `http://localhost:1337/api/blogposts?populate=*&filters[id][$eq]=${params.id}`
-        );
-    
-        if (response.ok) {
-            const data = await response.json();
-            const [post] = data.data;
-    
-            if (!post) {
-                return { props: { post: null } }
-            }
-    
-            return { props: { post } };
-        } else {
-            console.error("Failed to fetch data");
-            return { props: { post: null } };
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return { props: { post: null } };
-    }
+export const getStaticPaths: GetStaticPaths<Paths> = async () => {
+    const response = await fetch(`http://localhost:1337/api/blogposts?populate=*`);
+    const posts = await response.json();
+    const paths = posts.data.map((post: IBlogPost) => ({
+        params: { id: post.id.toString() },
+    }));
+
+    return {
+        paths: paths,
+        fallback: false,
+    };
 }
 
+export const getStaticProps: GetStaticProps<ProductProps, Paths> = async (context) => {
+    const response = await fetch(
+        `http://localhost:1337/api/blogposts?populate=deep&filters[id][$eq]=${context.params?.id}`
+    );
+    const post = await response.json();
+
+    return {
+        props: {
+            post: post.data[0],
+        },
+    };
+};
 export default DetailPage;
