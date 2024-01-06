@@ -15,8 +15,24 @@ body {
   overflow-x: hidden;
 }
 
-.logo{
-  font-size: 30px;
+.expr{
   color: #5e5e5e;
   font-family: "JansinaRegular";
+}
+.expr-post-page{
+  font-size: 60px;
+}
+
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-in-out;
 }

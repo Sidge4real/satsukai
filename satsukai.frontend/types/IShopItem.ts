@@ -1,7 +1,12 @@
+import { ICategory } from "./ICategory";
+
 export interface IShopItem {
   id:         number;
   attributes: PurpleAttributes;
+  amount_to_buy?: number | null;
+  openDetails?: boolean;
 }
+
 
 export interface PurpleAttributes {
   name:        string;
@@ -12,12 +17,20 @@ export interface PurpleAttributes {
   createdAt:   Date;
   updatedAt:   Date;
   publishedAt: Date;
-  category:    Category;
+  origin:      string;
+  slogan:      string;
+  age:         number;
+  color:       string;
+  lifespan:    number;
+  dimensions:  string;
+  temperatures:string;
   image:       Image;
+  category:    Category;
+  including:   Including;
 }
 
 export interface Category {
-  data: Data;
+  data: ICategory;
 }
 
 export interface Data {
@@ -27,8 +40,7 @@ export interface Data {
 
 export interface DataAttributes {
   name:        Name;
-  min_temp:    number;
-  max_temp:    number;
+  temperature: string;
   createdAt:   Date;
   updatedAt:   Date;
   publishedAt: Date;
@@ -113,4 +125,21 @@ export interface Pagination {
   pageSize:  number;
   pageCount: number;
   total:     number;
+}
+
+export interface Including {
+  data: IncludingData;
+}
+
+export interface IncludingData {
+  id:         number;
+  attributes: StickyAttributes;
+}
+
+export interface StickyAttributes {
+  info:        string;
+  createdAt:   Date;
+  updatedAt:   Date;
+  publishedAt: Date;
+  images:      Image; // plugin: strapi-plugin-populate-deep | fixes: (/populate=* has a official bug at strapi) // https://github.com/strapi/strapi/pull/2693 (deep nesting images)
 }
