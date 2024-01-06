@@ -7,10 +7,6 @@ export interface IShopItem {
   openDetails?: boolean;
 }
 
-export interface IBag {
-  item: IShopItem;
-  amount: number;
-}
 
 export interface PurpleAttributes {
   name:        string;

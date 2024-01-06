@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { IBlogPost } from "../../types/IBlogPost";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Breadcrumbs from "@/components/breadcumbs";
-import { ShopContext } from "@/ShopContext";
 import TuneModal from "@/components/FilterModel";
 import { IPostFilters } from "../../types/IPostFilters";
 
 const PostsPage = ({ blogData, filters }: { blogData: IBlogPost[], filters: IPostFilters[] }) => {
-  const { items } = useContext(ShopContext);
   const [isTuneModalOpen, setTuneModalOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
 

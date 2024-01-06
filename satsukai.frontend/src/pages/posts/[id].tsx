@@ -1,11 +1,8 @@
 import { useRouter } from "next/router";
 import { IBlogPost } from "../../../types/IBlogPost";
 import Breadcrumbs from "@/components/breadcumbs";
-import { ShopContext } from "@/ShopContext";
-import { useContext } from "react";
 
 const DetailPage = ({ post }: { post: IBlogPost }) => {
-    const { items } = useContext(ShopContext);
     const router = useRouter();
 
     if (!post || post == null || undefined) {

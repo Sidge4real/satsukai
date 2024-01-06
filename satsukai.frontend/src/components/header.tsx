@@ -9,7 +9,6 @@ interface HeaderComponentProps {
 
 const HeaderComponent = ({ toggleCartOverlay, amount }: HeaderComponentProps) => {
   const router = useRouter();
-  const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleToggleMenu = () => {
@@ -61,8 +60,9 @@ const HeaderComponent = ({ toggleCartOverlay, amount }: HeaderComponentProps) =>
               <Link href="/products" className={`block text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-2xl font-medium ${router.pathname.startsWith('/products') ? 'bg-gray-100' : ''}`} onClick={handleToggleMenu}>Shop</Link>
               <Link href="/posts" className={`block text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-2xl font-medium ${router.pathname.startsWith('/posts') ? 'bg-gray-100' : ''}`} onClick={handleToggleMenu}>Blog</Link>
               <Link href="/contact" className={`block text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2 text-2xl font-medium ${router.pathname === '/contact' ? 'bg-gray-100' : ''}`} onClick={handleToggleMenu}>Contact</Link>
-              <button type="button" className="block text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2" onClick={() => { handleToggleMenu(); toggleCartOverlay(); }}>
+              <button type="button" className="block relative text-gray-500 hover:bg-gray-100 rounded-md px-3 py-2" onClick={() => { handleToggleMenu(); toggleCartOverlay(); }}>
                 <span className="material-symbols-outlined text-3xl">shopping_bag</span>
+                {amount > 0 && <span className="absolute bottom-[10px] right-[10px] bg-green-500 text-white rounded-full w-5 h-5 flex items-center justify-center -mt-1 -mr-1">{amount >= 10 ? "9+" : amount}</span>}
               </button>
             </div>
           )}

@@ -17,9 +17,6 @@ const Breadcrumbs = ({param, category} : IBreadcrumbs) => {
   }
   if (categoryPathSegement !== "") {
     pathSegments.splice(-1, 0, categoryPathSegement);
-    //console.log(pathSegments) // array: ['products', 'bonsai', '1']
-    //console.log("category is " + categoryPathSegement) // console: "category is bonsai"
-    // dit deel is correct
   }
 
   return (
@@ -30,18 +27,15 @@ const Breadcrumbs = ({param, category} : IBreadcrumbs) => {
             <p className="hover:text-gray-700">Home</p>
           </Link>
         </li>
-        {
-          // hier loopt iets verkeer, product naam moet na product categorie komen in volgorde zoals de array zijn volgorde
-        }
         {pathSegments.map((segment, index) => (
           <li key={index} className="flex items-center">
             <span className="mx-1">{'＞'}</span>
             <Link
             href={
-              categoryPathSegement === segment // at category segment in array change link
+              categoryPathSegement === segment 
                 ? `/products/${segment}`
-                : pathSegments.length - 1 === index && category // at segment before last one when category came before
-                ? `/${pathSegments[0]}/${segment}` // skip /category name/ from route
+                : pathSegments.length - 1 === index && category 
+                ? `/${pathSegments[0]}/${segment}`
                 : `/${pathSegments.slice(0, index + 1).join('/')}` // default
             }
           >

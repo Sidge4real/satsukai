@@ -46,7 +46,6 @@ const ShopCart = ({shoppingList, setShoppingList, toggleCartOverlay } : ICart) =
       }
 
       useEffect(() => {
-        // Wanneer shoppingList wordt gewijzigd, controleer of details voor het eerste item moeten worden geopend
         if (shoppingList.length > 0) {
           const firstItemId = shoppingList[0].id;
           setOpenDetailsMap((prev) => ({ ...prev, [firstItemId]: true }));

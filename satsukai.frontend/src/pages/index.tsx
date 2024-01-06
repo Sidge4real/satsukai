@@ -1,17 +1,12 @@
-import { SetStateAction, useState, useContext, Dispatch, useEffect } from 'react';
-import Head from 'next/head';
+import { SetStateAction, useState, Dispatch, useEffect } from 'react';
 import { IShopItem } from "../../types/IShopItem";
-import { ShopContext } from '@/ShopContext';
 import { IBlogPost } from '../../types/IBlogPost';
-import Link from 'next/link';
 import router from 'next/router';
 import Team from '@/components/teamSection';
 import LatestBlogs from '@/components/lastestBlogSection';
 import { ITeam } from '../../types/ITeam';
 
 export default function Home({ products, blogs, members }: { setShoppingList: Dispatch<SetStateAction<IShopItem[]>>, products: IShopItem[], blogs: IBlogPost[], members: ITeam[] }) {
-  const { items } = useContext(ShopContext);
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 

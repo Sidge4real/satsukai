@@ -1,8 +1,5 @@
 import { IShopItem } from "../../../types/IShopItem";
-import TuneModal from "@/components/categoryModal";
 import { useContext, useState } from "react";
-import Breadcrumbs from "@/components/breadcumbs";
-import router, { useRouter } from "next/router";
 import { ICategory } from "../../../types/ICategory";
 import { ShopContext } from "@/ShopContext";
 import DetailScreen from "@/components/detailScreen";
@@ -10,7 +7,6 @@ import DetailScreen from "@/components/detailScreen";
 const Shop = ({ products, categories, addToCart, deleteItemFromList }: { products: IShopItem[], categories: ICategory[], addToCart : (item: IShopItem) => void, deleteItemFromList: (item: IShopItem) => void }) => {
   const {items} = useContext(ShopContext);
 
-  const router = useRouter();
   const [isTuneModalOpen, setTuneModalOpen] = useState(false);
 
   const openTuneModal = () => {

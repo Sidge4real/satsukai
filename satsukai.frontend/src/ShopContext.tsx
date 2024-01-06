@@ -1,5 +1,5 @@
 import React from "react";
-import { IBag, IShopItem } from "../types/IShopItem";
+import { IShopItem } from "../types/IShopItem";
 
 interface IList {
   items: IShopItem[];

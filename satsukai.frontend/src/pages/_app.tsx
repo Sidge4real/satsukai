@@ -3,9 +3,8 @@ import type { AppProps } from 'next/app';
 import { useState, useEffect } from 'react';
 import Header from "@/components/header";
 import { ShopContext } from '@/ShopContext';
-import { IBag, IShopItem } from '../../types/IShopItem';
+import { IShopItem } from '../../types/IShopItem';
 import ShopCart from '@/components/cart';
-import { useRouter } from 'next/router';
 import LoadingScreen from '@/components/loadingScreen';
 import Footer from '@/components/footer';
 

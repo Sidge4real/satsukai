@@ -1,14 +1,8 @@
 import Breadcrumbs from "@/components/breadcumbs";
-import TuneModal from "@/components/categoryModal";
-import { IShopItem } from "../../types/IShopItem";
-import { useContext, useState } from "react";
 import router from "next/router";
 import { ICategory } from "../../types/ICategory";
-import { ShopContext } from "@/ShopContext";
 
 const categoryPage = ({categories} : {categories: ICategory[]}) => {    
-    const {items} = useContext(ShopContext);
-
     return <>
         <div className="bg-white p-8">
         <nav className="flex gap-4 my-3">
