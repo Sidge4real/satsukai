@@ -7,6 +7,7 @@ import { IShopItem } from '../../types/IShopItem';
 import ShopCart from '@/components/cart';
 import LoadingScreen from '@/components/loadingScreen';
 import Footer from '@/components/footer';
+import { Head } from 'next/document';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(true);

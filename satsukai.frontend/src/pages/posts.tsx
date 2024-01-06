@@ -82,24 +82,13 @@ const PostsPage = ({ blogData, filters }: { blogData: IBlogPost[], filters: IPos
 
 
 export async function getStaticProps() {
-  try {
     const blogResponse = await fetch("http://localhost:1337/api/blogposts?populate=*");
     const blogData = await blogResponse.json();
 
     const filterResponse = await fetch("http://localhost:3000/api/filters");
     const filters = await filterResponse.json();
 
-    if (blogResponse.ok && filterResponse.ok) {
-      console.log(blogData, filters);
-      return { props: { blogData: blogData.data, filters } };
-    } else {
-      console.error("Failed to fetch data");
-      return { props: { blogData: [], filters: [] } };
-    }
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return { props: { blogData: [], filters: [] } };
-  }
+    return { props: { blogData: blogData.data, filters } };
 }
 
 
