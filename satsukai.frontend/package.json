@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "build:css": "tailwindcss build -o src/styles/tailwind.css",
-    "watch:css": "tailwindcss build -i src/styles/tailwind.css -o src/styles/styles.css --watch"
+    "watch:css": "tailwindcss build -i src/styles/tailwind.css -o src/styles/styles.css --watch",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
