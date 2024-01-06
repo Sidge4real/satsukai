@@ -5,9 +5,18 @@ import Breadcrumbs from "@/components/breadcumbs";
 import TuneModal from "@/components/FilterModel";
 import { IPostFilters } from "../../types/IPostFilters";
 
-const PostsPage = ({ blogData, filters }: { blogData: IBlogPost[], filters: IPostFilters[] }) => {
+const PostsPage = ({ blogData }: { blogData: IBlogPost[], filters: IPostFilters[] }) => {
   const [isTuneModalOpen, setTuneModalOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+
+  const filters = [
+    { id: 1, name: 'Aesthetics' },
+    { id: 2, name: 'Horticulture' },
+    { id: 3, name: 'Maintenance' },
+    { id: 3, name: 'Knowledge' },
+    { id: 4, name: "Show all"}
+  ];
+
 
   const openTuneModal = () => {
     if (isTuneModalOpen) {
@@ -85,10 +94,10 @@ export async function getStaticProps() {
     const blogResponse = await fetch("http://localhost:1337/api/blogposts?populate=*");
     const blogData = await blogResponse.json();
 
-    const filterResponse = await fetch("http://localhost:3000/api/filters");
-    const filters = await filterResponse.json();
-
-    return { props: { blogData: blogData.data, filters } };
+    //const filterResponse = await fetch("http://localhost:3000/api/filters");
+    //const filters = await filterResponse.json();
+// fix: filters uit next/api mislukt de build proces voor posts.tsx, dus de filters hardcoded ingeplaats
+    return { props: { blogData: blogData.data } };
 }
 
 
